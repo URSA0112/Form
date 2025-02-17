@@ -1,30 +1,11 @@
 //https://pinecone-academy-multi-step-form.vercel.app/  -app link
-//https://pinecone-academy-multi-step-form.vercel.app/ -figma link
+//https://www.figma.com/design/r2uRwm2PQAdjWxydlUApLU/Multi-step-form?node-id=55-25427&p=f&m=dev-figma link
 
-"use client";
-import { Form1 } from "./components/page-1";
-import { Form2 } from "./components/page-2";
-import { useState, useEffect } from "react";
+import { FormContainer } from "./components/FormsContainer";
 
 export default function Home() {
-  const [currentPage, setCurrentPage] = useState(0);
-  const Forms = [Form1, Form2][currentPage];
-  function handleBackClick() {
-    if (currentPage > 0) {
-     setCurrentPage(currentPage - 1)
-    }
-  }
-  function handleNextClick() {
-    if(currentPage < Forms.length)
-    {setCurrentPage(currentPage + 1)}
-  }
+
   return (
-    <div>
-      <Forms></Forms>
-      <div>
-        <button onClick={handleBackClick}>back</button>
-        <button onClick={handleNextClick}>continue</button>
-      </div>
-    </div>
+    <FormContainer />
   );
 }
