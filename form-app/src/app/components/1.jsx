@@ -1,25 +1,51 @@
-export function Form1() {
+export function Form1({ data, setData, error, setError }) {
+    // style <--
     const labelStyle = " h-[16px] text-[14px] font-normal"
     const inputStyle = " h-[40px] w-[100%] rounded-md pl-4 text-[18px]"
     const inputContainerStyle = "w-[416px] h-[68px] "
+    const errorStyle = "text-red-500 text-[12px] "
+    //-->
+    //data[0] = mydata
+    function onchange(e) {
+        setData((prev) => ({ ...prev, [e.target.name]: e.target.value }))
+       
+    }
+
 
     return (
-        <form className="w-[416px] h-[auto] text-[20px] text-black flex flex-col gap-[12px] mt-[28px]" >
+        <form className="w-[416px] h-[auto] text-[20px] text-black flex flex-col gap-[20px] mt-[28px]" >
             <div id="label-container" className={inputContainerStyle}>
                 <label className={labelStyle}>First name </label><br />
-                <input type="text" placeholder="name"
+                <input
+                    name="firstName"
+                    value={data.firstName}
+                    onChange={onchange}
+                    type="text"
+                    placeholder="Your Firsrt name"
+                    className={inputStyle} />
+                    <p className={errorStyle}>Error here</p>
+            </div>
+           
+
+            <div id="label-container" className={inputContainerStyle}>
+                <label className={labelStyle}>Last name </label><br />
+                <input
+                    name="lastName"
+                    value={data.lastName}
+                    onChange={onchange}
+                    type="text"
+                    placeholder=" Your Last name"
                     className={inputStyle} />
             </div>
 
             <div id="label-container" className={inputContainerStyle}>
-                <label className={labelStyle}>First name </label><br />
-                <input type="text" placeholder="name"
-                    className={inputStyle} />
-            </div>
-
-            <div id="label-container" className={inputContainerStyle}>
-                <label className={labelStyle}>First name </label><br />
-                <input type="text" placeholder="name"
+                <label className={labelStyle}>User name </label><br />
+                <input
+                    name="userName"
+                    value={data.userName}
+                    onChange={onchange}
+                    type="text"
+                    placeholder="Your User name"
                     className={inputStyle} />
             </div>
 
