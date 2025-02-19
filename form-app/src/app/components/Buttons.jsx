@@ -25,22 +25,18 @@ export function Buttons({
       );
   }
   //-->
-
   function handleBackClick() {
     if (currentStep != 0) {
       setCurrentStep(currentStep - 1);
     }
     return;
   }
-
   
   useEffect(() => {
     const localSavedData = JSON.parse(
       window.localStorage.getItem("multi-step-form")
     );
-
     if (!localSavedData) return;
-
     setData(localSavedData);
   }, []);
 
