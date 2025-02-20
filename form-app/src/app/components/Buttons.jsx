@@ -1,13 +1,6 @@
 import { useEffect } from "react";
 
-export function Buttons({
-  Forms,
-  currentStep,
-  setCurrentStep,
-  data,
-  setData,
-  handleContinueClick
-}) {
+export function Buttons({ Forms, currentStep, setCurrentStep, handleContinueClick }) {
   //Button style <--
   const BackButtonStyle = "bg-slate-900 text-white rounded-md w-20 h-10";
   const ContinueBbuttonStyle = `bg-black text-white rounded-md  h-10 ${
@@ -32,13 +25,6 @@ export function Buttons({
     return;
   }
   
-  useEffect(() => {
-    const localSavedData = JSON.parse(
-      window.localStorage.getItem("multi-step-form")
-    );
-    if (!localSavedData) return;
-    setData(localSavedData);
-  }, []);
 
   return (
     <div className="absolute bottom-[32px] flex gap-5">

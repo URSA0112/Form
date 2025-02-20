@@ -42,6 +42,15 @@ export function FormContainer() {
     return;
   }
 
+  useEffect(() => {
+    const localSavedData = JSON.parse(
+      window.localStorage.getItem("multi-step-form")
+    );
+    if (!localSavedData) return;
+    setData(localSavedData);
+  }, []);
+
+
   return (
     <>
       <div className="absolute left-[50%] top-[50%] translate-x-[-50%] translate-y-[-50%] bg-slate-200  w-[480px] h-[655px] p-[32px]  rounded-lg">
@@ -55,13 +64,9 @@ export function FormContainer() {
           handleContinueClick={handleContinueClick}
         ></Component>
         <Buttons
-          data={data}
-          setData={setData}
-          error={error}
-          setError={setError}
           currentStep={currentStep}
-          Forms={Forms}
           setCurrentStep={setCurrentStep}
+          Forms={Forms}
           handleContinueClick={handleContinueClick}
         ></Buttons>
       </div>

@@ -1,13 +1,6 @@
 import { useEffect } from "react";
 
-export function Form1({
-  data,
-  setData,
-  error,
-  setError,
-  Forms,
-  handleContinueClick,
-}) {
+export function Form1({ data, setData, error, setError, Forms, handleContinueClick,}) {
   function onchange(e) {
     setData((prev) => ({ ...prev, [e.target.name]: e.target.value }));
   }
@@ -17,7 +10,6 @@ export function Form1({
   const inputContainerStyle = "w-[416px] h-[68px] ";
   const errorStyle = "text-red-500 text-[12px] ";
   //-->
-  //data[0] = mydata
 
   function handleOnSubmit() {
     if (!data.firstName.trim()) {
