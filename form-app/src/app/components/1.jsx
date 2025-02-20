@@ -10,7 +10,7 @@ export function Form1({ data, setData, error, handleOnSubmit }) {
   const inputContainerStyle = "w-[416px] h-[68px] ";
   const errorStyle = "text-red-500 text-[12px] ";
   //-->
-  
+
   return (
     <form
       onSubmit={handleOnSubmit}
@@ -41,7 +41,7 @@ export function Form1({ data, setData, error, handleOnSubmit }) {
           placeholder=" Your Last name"
           className={inputStyle}
         />
-        {/* {error.firstName && <p className={errorStyle}>{error.lastName}</p>} */}
+        {error.lastName && <p className={errorStyle}>{error.lastName}</p>}
       </div>
 
       <div id="label-container" className={inputContainerStyle}>
@@ -55,7 +55,7 @@ export function Form1({ data, setData, error, handleOnSubmit }) {
           placeholder="Your User name"
           className={inputStyle}
         />
-        {/* {error.firstName && <p className={errorStyle}>{error.userName}</p>} */}
+        {error.userName && <p className={errorStyle}>{error.userName}</p>}
       </div>
     </form>
   );

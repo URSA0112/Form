@@ -38,33 +38,75 @@ export function FormContainer() {
     );
     if (!localSavedData) return;
     setData(localSavedData);
-  }, []);
+  }, [])
+
 
   // ======
 
+
+
   function handleOnSubmit(e) {
     e.preventDefault();
-    let hasError = false;
+    if (data.firstName.trim() === "") {
+      setError((prev) => ({ ...prev, firstName: "First name is required" }));
 
-    if (data.firstName == "") {
-      setError((prev) => ({ ...prev, firstName: "hooson baina" }));
-      hasError = true;
     } else {
       setError((prev) => ({ ...prev, firstName: "" }));
     }
 
-    if (!hasError) {
-      handleContinueClick(hasError);
+    if (data.lastName.trim() === "") {
+      setError((prev) => ({ ...prev, lastName: "Last name is required" }))
     }
+    else {
+      setError((prev) => ({ ...prev, lastName: "" }))
+    }
+
+    if (data.userName.trim() === "") {
+      setError((prev) => ({ ...prev, userName: "User name is required" }))
+    }
+    else {
+      setError((prev) => ({ ...prev, userName: "" }))
+    }
+    if (data.email.trim() === "") {
+      setError((prev) => ({ ...prev, email: "Email is required" }))
+    }
+    else {
+      setError((prev) => ({ ...prev, email: "" }))
+    }
+    if (data.phoneNumber.trim() === "") {
+      setError((prev) => ({ ...prev, phoneNumber: "Phone number is required" }))
+    }
+    else {
+      setError((prev) => ({ ...prev, phoneNumber: "" }))
+    }
+    if (data.password.trim() === "") {
+      setError((prev) => ({ ...prev, password: " Password is required" }))
+    }
+    else {
+      setError((prev) => ({ ...prev, password: "" }))
+    }
+    if (data.confirmPassword.trim() === "") {
+      setError((prev) => ({ ...prev, confirmPassword: " Confirm Password is required" }))
+    }
+     else if (data.password !== data.confirmPassword) {
+      setError((prev) => ({ ...prev, confirmPassword: " Confirm Password is not matching" }))
+    }
+    else {
+      setError((prev) => ({ ...prev, confirmPassword: "" }))
+    }
+   
+  
+    handleContinueClick();
   }
 
-  function handleContinueClick(hasError) {
-    window.localStorage.setItem("multi-step-form", JSON.stringify(data));
 
+  function handleContinueClick() {
+    window.localStorage.setItem("multi-step-form", JSON.stringify(data));
     console.log(error, data);
-    // if (currentStep < Forms.length - 1) {
-    //   setCurrentStep(currentStep + 1);
-    // }
+
+    if (currentStep < Forms.length - 1) {
+      setCurrentStep(currentStep + 1);
+    }
   }
 
   return (
@@ -83,8 +125,11 @@ export function FormContainer() {
           setCurrentStep={setCurrentStep}
           Forms={Forms}
           handleContinueClick={handleContinueClick}
+          handleOnSubmit={handleOnSubmit}
         ></Buttons>
       </div>
     </>
   );
+
+
 }
