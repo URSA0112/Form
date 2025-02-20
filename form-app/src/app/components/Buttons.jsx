@@ -24,7 +24,10 @@ export function Buttons({ Forms, currentStep, setCurrentStep, handleContinueClic
     }
     return;
   }
+<<<<<<< HEAD
   
+=======
+>>>>>>> 92ebba89d84b66710c1f05fe347e9c2664521c83
 
   return (
     <div className="absolute bottom-[32px] flex gap-5">

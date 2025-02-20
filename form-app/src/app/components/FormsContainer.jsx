@@ -7,40 +7,38 @@ import { Header } from "./header";
 import { Buttons } from "./Buttons";
 
 export function FormContainer() {
-  const [currentStep, setCurrentStep] = useState(0);
-  const Forms = [Form1, Form2, Form3];
-  const Component = Forms[currentStep];
+    const [currentStep, setCurrentStep] = useState(0);
+    const Forms = [Form1, Form2, Form3];
+    const Component = Forms[currentStep];
 
-  const [data, setData] = useState({
-    firstName: "",
-    lastName: "",
-    userName: "",
-    email: "",
-    phoneNumber: "",
-    password: "",
-    confirmPassword: "",
-    birth: "",
-  });
-  const [error, setError] = useState({
-    firstName: "",
-    lastName: "",
-    userName: "",
-    email: "",
-    phoneNumber: "",
-    password: "",
-    confirmPassword: "",
-    birth: "",
-  });
+    const [data, setData] = useState({
+        firstName: "",
+        lastName: "",
+        userName: "",
+        email: "",
+        phoneNumber: "",
+        password: "",
+        confirmPassword: "",
+        birth: "",
+    });
+    const [error, setError] = useState({
+        firstName: "",
+        lastName: "",
+        userName: "",
+        email: "",
+        phoneNumber: "",
+        password: "",
+        confirmPassword: "",
+        birth: "",
+    });
 
-  function handleContinueClick(e) {
-    e.preventDefault();
-    if (currentStep < Forms.length - 1) {
-      setCurrentStep(currentStep + 1);
-    }
-    window.localStorage.setItem("multi-step-form", JSON.stringify(data));
+    function handleContinueClick(e) {
+        e.preventDefault();
+        if (currentStep < Forms.length - 1) {
+            setCurrentStep(currentStep + 1);
+        }
+        window.localStorage.setItem("multi-step-form", JSON.stringify(data));
 
-    return;
-  }
 
   useEffect(() => {
     const localSavedData = JSON.parse(
@@ -72,4 +70,6 @@ export function FormContainer() {
       </div>
     </>
   );
-}
+
+
+    }}

@@ -11,15 +11,35 @@ export function Form1({ data, setData, error, setError, Forms, handleContinueCli
   const errorStyle = "text-red-500 text-[12px] ";
   //-->
 
-  function handleOnSubmit() {
-    if (!data.firstName.trim()) {
+
+  function handleOnSubmit(e) {
+      e.preventDefault()
+      let hasError = false;
+
+      if (!data.firstName.trim()) {
         setError((prev) => ({ ...prev, firstName: "empty" }));
+        hasError = true;
       } else {
         setError((prev) => ({ ...prev, firstName: "" }));
       }
-
-  
-    handleContinueClick();
+    
+      if (!data.lastName.trim()) {
+        setError((prev) => ({ ...prev, lastName: "empty" }));
+        hasError = true;
+      } else {
+        setError((prev) => ({ ...prev, lastName: "" }));
+      }
+    
+      if (!data.userName.trim()) {
+        setError((prev) => ({ ...prev, userName: "empty" }));
+        hasError = true;
+      } else {
+        setError((prev) => ({ ...prev, userName: "" }));
+      }
+    
+      if (!hasError) {
+        handleContinueClick(); 
+      }
   }
 
 
@@ -53,7 +73,7 @@ export function Form1({ data, setData, error, setError, Forms, handleContinueCli
           placeholder=" Your Last name"
           className={inputStyle}
         />
-        {error.firstName && <p className={errorStyle}>{error.lastName}</p>}
+        {error.lastName && <p className={errorStyle}>{error.lastName}</p>}
       </div>
 
       <div id="label-container" className={inputContainerStyle}>
@@ -67,7 +87,7 @@ export function Form1({ data, setData, error, setError, Forms, handleContinueCli
           placeholder="Your User name"
           className={inputStyle}
         />
-        {error.firstName && <p className={errorStyle}>{error.userName}</p>}
+        {error.userName && <p className={errorStyle}>{error.userName}</p>}
       </div>
     </form>
   );
