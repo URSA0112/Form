@@ -88,23 +88,29 @@ export function FormContainer() {
     if (data.confirmPassword.trim() === "") {
       setError((prev) => ({ ...prev, confirmPassword: " Confirm Password is required" }))
     }
-     else if (data.password !== data.confirmPassword) {
+    else if (data.password !== data.confirmPassword) {
       setError((prev) => ({ ...prev, confirmPassword: " Confirm Password is not matching" }))
     }
     else {
       setError((prev) => ({ ...prev, confirmPassword: "" }))
     }
-   
-  
+
+
     handleContinueClick();
   }
 
 
   function handleContinueClick() {
     window.localStorage.setItem("multi-step-form", JSON.stringify(data));
-    console.log(error, data);
 
-    if (currentStep < Forms.length - 1) {
+    const steps = {
+      0: [data.firstName, data.lastName, data.userName],
+      1: [data.email, data.phoneNumber, data.password, data.confirmPassword],
+      2: [data.birth]
+    };
+    console.log(steps[currentStep].every((each) => each.trim() !== ""))
+
+    if (currentStep < Forms.length - 1 && steps[currentStep].every((each) => each.trim() !== "") && data.password === data.confirmPassword) {
       setCurrentStep(currentStep + 1);
     }
   }
@@ -126,6 +132,8 @@ export function FormContainer() {
           Forms={Forms}
           handleContinueClick={handleContinueClick}
           handleOnSubmit={handleOnSubmit}
+          data={data}
+          error={error}
         ></Buttons>
       </div>
     </>
