@@ -5,7 +5,6 @@ export function Header(){
             <img src="pinecone-logo.png" className="w-[60px] h-[60px]"></img>
             <h1 className="text-[26px] font-semibold ">Join Us!😎</h1>
             <p className="text-[var(--greyText-color)]">Please provide all current information accurately.</p>
-            
         </div>
     )
 }

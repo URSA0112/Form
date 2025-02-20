@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 
-export function Form1({ data, setData, error, setError, Forms, handleContinueClick,}) {
+export function Form1({ data, setData, error, handleOnSubmit }) {
   function onchange(e) {
     setData((prev) => ({ ...prev, [e.target.name]: e.target.value }));
   }
@@ -10,39 +10,7 @@ export function Form1({ data, setData, error, setError, Forms, handleContinueCli
   const inputContainerStyle = "w-[416px] h-[68px] ";
   const errorStyle = "text-red-500 text-[12px] ";
   //-->
-
-
-  function handleOnSubmit(e) {
-      e.preventDefault()
-      let hasError = false;
-
-      if (!data.firstName.trim()) {
-        setError((prev) => ({ ...prev, firstName: "empty" }));
-        hasError = true;
-      } else {
-        setError((prev) => ({ ...prev, firstName: "" }));
-      }
-    
-      if (!data.lastName.trim()) {
-        setError((prev) => ({ ...prev, lastName: "empty" }));
-        hasError = true;
-      } else {
-        setError((prev) => ({ ...prev, lastName: "" }));
-      }
-    
-      if (!data.userName.trim()) {
-        setError((prev) => ({ ...prev, userName: "empty" }));
-        hasError = true;
-      } else {
-        setError((prev) => ({ ...prev, userName: "" }));
-      }
-    
-      if (!hasError) {
-        handleContinueClick(); 
-      }
-  }
-
-
+  
   return (
     <form
       onSubmit={handleOnSubmit}
@@ -73,7 +41,7 @@ export function Form1({ data, setData, error, setError, Forms, handleContinueCli
           placeholder=" Your Last name"
           className={inputStyle}
         />
-        {error.lastName && <p className={errorStyle}>{error.lastName}</p>}
+        {/* {error.firstName && <p className={errorStyle}>{error.lastName}</p>} */}
       </div>
 
       <div id="label-container" className={inputContainerStyle}>
@@ -87,7 +55,7 @@ export function Form1({ data, setData, error, setError, Forms, handleContinueCli
           placeholder="Your User name"
           className={inputStyle}
         />
-        {error.userName && <p className={errorStyle}>{error.userName}</p>}
+        {/* {error.firstName && <p className={errorStyle}>{error.userName}</p>} */}
       </div>
     </form>
   );
