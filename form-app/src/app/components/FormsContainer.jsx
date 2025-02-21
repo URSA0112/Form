@@ -20,7 +20,7 @@ export function FormContainer() {
     password: "",
     confirmPassword: "",
     birth: "",
-    img:""
+    img: ""
   });
   const [error, setError] = useState({
     firstName: "",
@@ -31,7 +31,7 @@ export function FormContainer() {
     password: "",
     confirmPassword: "",
     birth: "",
-    img:""
+    img: ""
   });
 
   useEffect(() => {
@@ -96,6 +96,19 @@ export function FormContainer() {
     else {
       setError((prev) => ({ ...prev, confirmPassword: "" }))
     }
+    if (data.birth === "") {
+      setError((prev) => ({ ...prev, birth: "required" }))
+    }
+    else {
+      setError((prev) => ({ ...prev, birth: "" }))
+    }
+    if (data.img === "") {
+      setError((prev) => ({ ...prev, img: "required" }))
+    }
+    else {
+      setError((prev) => ({ ...prev, img: "" }))
+    }
+
 
 
     handleContinueClick();
@@ -110,7 +123,6 @@ export function FormContainer() {
       1: [data.email, data.phoneNumber, data.password, data.confirmPassword],
       2: [data.birth]
     };
-    console.log(steps[currentStep].every((each) => each.trim() !== ""))
 
     if (currentStep < Forms.length - 1 && steps[currentStep].every((each) => each.trim() !== "") && data.password === data.confirmPassword) {
       setCurrentStep(currentStep + 1);
