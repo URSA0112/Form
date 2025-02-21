@@ -1,18 +1,21 @@
 import { useEffect } from "react";
 
-export function Buttons({ Forms, currentStep, setCurrentStep, handleOnSubmit, data, error }) {
+export function Buttons({ Forms, currentStep, setCurrentStep, handleOnSubmit, steps }) {
   //Button style <--
   const BackButtonStyle = "bg-slate-900 text-white rounded-md w-20 h-10";
-  const ContinueBbuttonStyle = `bg-black text-white rounded-md  h-10 text-[20px] flex gap-[75px] items-center  ${currentStep === Forms.indexOf(Forms[0]) ? " w-[416px]" : "w-80"
+  const ContinueBbuttonStyle = `bg-black text-white rounded-md  h-10 text-[20px] flex gap-[17%] items-center  ${currentStep === Forms.indexOf(Forms[0]) ? " w-[416px]" : "w-80"
     }`;
   // -->
 
   // Backbutton as Component <--
   function reminder() {
-    if (Object.values(data) !== "") {
-      return <p className="ml-10">💚</p>
+
+    if (currentStep < 3 && steps[currentStep].every((each) => each.trim() !== "")  ) {
+      return <p className="ml-10">😍</p>
     }
+    else { return <p className="ml-10">😇</p> }
   }
+
 
   function BackButton() {
     if (currentStep > 0)
@@ -40,7 +43,7 @@ export function Buttons({ Forms, currentStep, setCurrentStep, handleOnSubmit, da
         className={ContinueBbuttonStyle}
       >
 
-       {reminder()} {`Continue ${currentStep + 1} /  ${Forms.length}`} </button>
+        {reminder()} {currentStep < 3 ? `Continue ${currentStep + 1} /  ${Forms.length-1}`:" Submitted ✅"} </button>
 
     </div>
   );

@@ -1,4 +1,4 @@
-export function Form3({ data, setData,handleOnSubmit,error}) {
+export function Form3({ data, setData, handleOnSubmit, error }) {
     const errorStyle = "text-red-500 text-[12px] ";
     function onchange(e) {
         setData((prev) => ({ ...prev, [e.target.name]: e.target.value }))
@@ -9,9 +9,9 @@ export function Form3({ data, setData,handleOnSubmit,error}) {
         if (file) {
             const imgURL = URL.createObjectURL(file);
             setData((prev) => ({ ...prev, img: imgURL }))
-  
-        }
 
+        }
+        e.target.value = null;
     }
 
 
@@ -22,30 +22,30 @@ export function Form3({ data, setData,handleOnSubmit,error}) {
                 <input
                     name="birth"
                     value={data.birth}
-                    onChange={handleOnSubmit}
+                    onChange={onchange}
                     type="date"
                     placeholder="Your birthday"
                     className="  h-[40px] w-[100%] rounded-md pl-4 text-[18px]" />
-                                    {error.birth && <p className={errorStyle}>{error.birth}</p>}
+                {error.birth && <p className={errorStyle}>{error.birth}</p>}
                 <div className="mt-5 w-[416px] h-[250px] border-[2px] border-black rounded-md relative overflow-hidden">
                     <input
                         type="file"
-                        className="w-full h-full absolute opacity-0 cursor-pointer"
+                        className="w-full h-full absolute opacity-0 cursor-pointer z-10"
                         accept="image/*"
                         onChange={handleImageChange}
                     />
                     {data.img ? (
                         <img
                             src={data.img}
-                            alt="Uploaded"
+                          
                             className="w-full h-full object-contain absolute"
                         />
                     ) : (
                         <div className="w-full h-full flex justify-center items-center text-gray-500">
                             Click to Upload Image
-                            
+
                         </div>
-                    )}       
+                    )}
                 </div> {error.img && <p className={errorStyle}>{error.img}</p>}</div>
         </form>
     )
