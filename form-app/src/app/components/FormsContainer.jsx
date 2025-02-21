@@ -20,6 +20,7 @@ export function FormContainer() {
     password: "",
     confirmPassword: "",
     birth: "",
+    img:""
   });
   const [error, setError] = useState({
     firstName: "",
@@ -30,6 +31,7 @@ export function FormContainer() {
     password: "",
     confirmPassword: "",
     birth: "",
+    img:""
   });
 
   useEffect(() => {
